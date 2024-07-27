@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="mt-5">Welcome to the University Map</h1>
+        <div id="map" style="height: 600px;"></div>
+    </div>
+</div>
+
+<!-- Top 20 Universities Section -->
+<div class="row mt-5">
+    <div class="col-md-6">
+        <h2>Top 20 Universities by Feature Rating</h2>
+        <ul id="top-feature-universities">
+            {% for university in top_feature_universities %}
+                <li><a href="{{ university.url }}">{{ university.name }}</a> - Rating: {{ university.feature_rating }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <h2>Top 20 Universities by Commodity Rating</h2>
+        <ul id="top-commodity-universities">
+            {% for university in top_commodity_universities %}
+                <li><a href="{{ university.url }}">{{ university.name }}</a> - Rating: {{ university.commodity_rating }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+{% endblock %}
